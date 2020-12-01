@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
 
-export(float) var move_speed : float = 150
+export(float) var move_speed : float = 130
 export(float) var roll_speed : float = 300
 export(float) var jump_height : float = 90	
-export(float) var jump_distance : float = 50
+export(float) var jump_distance : float = 40
 export(float) var ground_ease : float = 0.8
 export(float) var roll_ease : float = 0.95
 export(float) var air_ease : float = 0.6
@@ -22,16 +22,25 @@ func _process(delta):
 	
 	_drop_jump_timer += delta
 	
+	# Collider shape mod
+	if Input.is_action_pressed("RollMod"):
+		$MovementCollisionShape.shape.extents.y = $MovementCollisionShape.shape.extents.x - 1
+		$MovementCollisionShape.position.y = $MovementCollisionShape.shape.extents.x
+	else:
+		$MovementCollisionShape.shape.extents.y = 2 * $MovementCollisionShape.shape.extents.x - 2
+		$MovementCollisionShape.position.y = 2
+	
 	# Animations
 	if _is_grounded():
-		if abs(_velocity.x) > 0:
+		if abs(_velocity.x) > ground_stop_threshold:
 			if Input.is_action_pressed("RollMod"):
 				$AnimatedSprite.play("Roll")
 			else:
 				$AnimatedSprite.play("Walk")
 		else:
-			$AnimatedSprite.stop()
-			$AnimatedSprite.play("Idle")
+			if not Input.is_action_pressed("RollMod"):
+				$AnimatedSprite.stop()
+				$AnimatedSprite.play("Idle")
 	else:
 		# Freeze animation to set frames manually
 		$AnimatedSprite.play("Jump")
@@ -99,7 +108,7 @@ func _calculate_jump_parameters() -> void:
 	_jump_speed = sqrt(2 * jump_height * _gravity)
 	
 func _is_grounded() -> bool:
-	return test_move(transform, Vector2(0,1))
+	return test_move(transform, Vector2(0,0.1))
 	
 func _is_walled() -> bool:
 	var direction : float = 0

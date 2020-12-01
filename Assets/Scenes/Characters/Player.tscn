@@ -18,7 +18,7 @@
 [ext_resource path="res://Assets/Sprites/Player/RollAnim/SnowmanRoll4.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.24703, 15.0156 )
+extents = Vector2( 8, 14 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -47,11 +47,12 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="MovementCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "Roll"
-frame = 3
+animation = "Idle"
+frame = 1
 speed_scale = 2.0
 playing = true
