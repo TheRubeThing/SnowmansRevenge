@@ -101,7 +101,7 @@ func _physics_process(delta):
 	move_and_slide(_velocity, Vector2.UP)
 	
 func set_sprite_direction(direction : int) -> void:
-	$AnimatedSprite.flip_h = (direction > 0)
+	$AnimatedSprite.scale.x = -1 * direction
 	
 func _calculate_jump_parameters() -> void:
 	_gravity = jump_height / pow((jump_distance / move_speed), 2)
