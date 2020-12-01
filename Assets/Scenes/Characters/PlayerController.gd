@@ -2,10 +2,12 @@ extends KinematicBody2D
 
 
 export(float) var move_speed : float = 150
+export(float) var roll_speed : float = 300
 export(float) var jump_height : float = 90	
 export(float) var jump_distance : float = 50
 export(float) var ground_ease : float = 0.8
-export(float) var air_ease : float = 0.7
+export(float) var roll_ease : float = 0.95
+export(float) var air_ease : float = 0.6
 export(float) var ground_stop_threshold : float = 2
 export(float) var drop_jump_time : float = 0.1
 
@@ -23,8 +25,12 @@ func _process(delta):
 	# Animations
 	if _is_grounded():
 		if abs(_velocity.x) > 0:
-			$AnimatedSprite.play("Walk")
+			if Input.is_action_pressed("RollMod"):
+				$AnimatedSprite.play("Roll")
+			else:
+				$AnimatedSprite.play("Walk")
 		else:
+			$AnimatedSprite.stop()
 			$AnimatedSprite.play("Idle")
 	else:
 		# Freeze animation to set frames manually
@@ -40,10 +46,16 @@ func _process(delta):
 func _physics_process(delta):
 	# Get player movement input
 	if Input.is_action_pressed("Left"):
-		_velocity.x += (1 - ground_ease) * (-1 * move_speed - _velocity.x)
+		if Input.is_action_pressed("RollMod") && _is_grounded():
+			_velocity.x += (1 - roll_ease) * (-1 * roll_speed - _velocity.x)
+		else:
+			_velocity.x += (1 - ground_ease) * (-1 * move_speed - _velocity.x)
 		set_sprite_direction(-1)
 	elif Input.is_action_pressed("Right"):
-		_velocity.x += (1 - ground_ease) * (1 * move_speed - _velocity.x)
+		if Input.is_action_pressed("RollMod") && _is_grounded():
+			_velocity.x += (1 - roll_ease) * (1 * roll_speed - _velocity.x)
+		else:
+			_velocity.x += (1 - ground_ease) * (1 * move_speed - _velocity.x)
 		set_sprite_direction(1)
 	else:
 		_velocity.x *= ground_ease
