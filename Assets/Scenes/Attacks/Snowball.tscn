@@ -6,7 +6,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
 
-[node name="Snowball" type="KinematicBody2D"]
+[node name="Snowball" type="KinematicBody2D" groups=[
+"PlayerProjectile",
+]]
+collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

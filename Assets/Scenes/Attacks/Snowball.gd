@@ -2,13 +2,15 @@ extends KinematicBody2D
 class_name Snowball
 
 export(float) var gravity = 98
-export(float) var speed = 200
+export(float) var speed = 400
 
 onready var _velocity : Vector2 = Vector2.ZERO
 
 func _physics_process(delta):
 	_velocity.y += gravity * delta 
 	move_and_slide(_velocity, Vector2.UP)
+	if is_on_wall() || is_on_ceiling():
+		_velocity = Vector2.ZERO
 	if _is_grounded():
 		queue_free()
 	

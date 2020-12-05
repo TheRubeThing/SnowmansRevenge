@@ -10,25 +10,27 @@ export(float) var roll_ease : float = 0.95
 export(float) var air_ease : float = 0.6
 export(float) var ground_stop_threshold : float = 2
 export(float) var drop_jump_time : float = 0.1
+export(float) var max_health : float = 100.0
+export(float) var snow_ball_cost : float = 5
 
 onready var _velocity := Vector2.ZERO
 onready var _gravity : float = 0
 onready var _jump_speed : float = 0
 onready var _just_grounded : bool = false
 onready var _drop_jump_timer : float = 0
+onready var _health = max_health
+
+signal update_health(health, amount)
+signal set_max_health(max_health)
+
+func _ready():
+	emit_signal("set_max_health", max_health)
+	emit_signal("update_health", _health, 0)
 
 func _process(delta):
 	_calculate_jump_parameters()
 	
 	_drop_jump_timer += delta
-	
-	# Collider shape mod
-	if Input.is_action_pressed("RollMod"):
-		$MovementCollisionShape.shape.extents.y = $MovementCollisionShape.shape.extents.x - 1
-		$MovementCollisionShape.position.y = $MovementCollisionShape.shape.extents.x
-	else:
-		$MovementCollisionShape.shape.extents.y = 2 * $MovementCollisionShape.shape.extents.x - 2
-		$MovementCollisionShape.position.y = 2
 	
 	# Animations
 	if _is_grounded():
@@ -53,6 +55,17 @@ func _process(delta):
 			$AnimatedSprite.frame = 0
 
 func _physics_process(delta):
+	# Collider shape mod
+	if Input.is_action_pressed("RollMod"):
+		detect_snow()
+		$MovementCollisionShape.shape.extents.y = $MovementCollisionShape.shape.extents.x - 1
+		$MovementCollisionShape.position.y = $MovementCollisionShape.shape.extents.x
+	else:
+		$MovementCollisionShape.shape.extents.y = 2 * $MovementCollisionShape.shape.extents.x - 2
+		$MovementCollisionShape.position.y = 2
+		
+	$PlayerHitbox/HitboxShape.shape.extents = $MovementCollisionShape.shape.extents
+	$PlayerHitbox/HitboxShape.position.y = $MovementCollisionShape.position.y
 	# Get player movement input
 	if Input.is_action_pressed("Left"):
 		if Input.is_action_pressed("RollMod") && _is_grounded():
@@ -100,6 +113,15 @@ func _physics_process(delta):
 	# Execute movement
 	move_and_slide(_velocity, Vector2.UP)
 	
+func detect_snow():
+	for body in $SnowDetector.get_overlapping_bodies():
+		var cell = body.world_to_map(position)
+		cell.y += 1
+		body.set_cell(cell.x, cell.y, -1)
+		_health += 0.1
+		emit_signal("update_health", _health, 0)
+		print("Snow!")
+	
 func set_sprite_direction(direction : int) -> void:
 	$AnimatedSprite.scale.x = -1 * direction
 	
@@ -115,3 +137,25 @@ func _is_walled() -> bool:
 	if _velocity.x != 0:
 		direction = _velocity.x / abs(_velocity.x)
 	return test_move(transform, Vector2(direction,0))
+	
+func damage(damage):
+	if $InvisiblityTimer.is_stopped():
+		$InvisiblityTimer.start()
+		$AnimationPlayer.play("Flash")
+		_health -= damage
+		emit_signal("update_health", _health, 0)
+
+
+func _on_PlayerHitbox_body_entered(body):
+	damage(body.get_damage())
+
+
+func _on_FirePosition_fired():
+	_health -= snow_ball_cost
+	emit_signal("update_health", _health, 0)
+
+
+func _on_InvisiblityTimer_timeout():
+	$AnimationPlayer.play("Idle")
+	for body in $PlayerHitbox.get_overlapping_bodies():
+		damage(body.get_damage())
