@@ -36,6 +36,7 @@ func _on_HitBox_body_entered(body):
 		if $InvisiblityTimer.is_stopped():
 			$InvisiblityTimer.start()
 			$AnimationPlayer.play("Flash")
+			$AnimationPlayer.queue("Flutter")
 			_health -= 10
 			if _health <= 0:
 				queue_free()

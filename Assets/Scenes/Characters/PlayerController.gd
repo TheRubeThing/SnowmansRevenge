@@ -142,6 +142,7 @@ func damage(damage):
 	if $InvisiblityTimer.is_stopped():
 		$InvisiblityTimer.start()
 		$AnimationPlayer.play("Flash")
+		$AnimationPlayer.queue("Flimmer")
 		_health -= damage
 		emit_signal("update_health", _health, 0)
 
