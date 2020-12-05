@@ -22,6 +22,7 @@ onready var _health = max_health
 
 signal update_health(health, amount)
 signal set_max_health(max_health)
+signal set_trauma(trauma)
 
 func _ready():
 	emit_signal("set_max_health", max_health)
@@ -95,6 +96,10 @@ func _physics_process(delta):
 		
 	# Apply gravity if not grounded
 	if _is_grounded():
+		# Ground shake when landning
+		if not _just_grounded && abs(_velocity.y) > 1.1 * _jump_speed:
+			emit_signal("set_trauma", min(_velocity.y / (6 * _jump_speed), 1.0))
+			
 		_just_grounded = true
 		if	Input.is_action_just_pressed("Jump"):
 			_velocity.y -= _jump_speed
@@ -150,6 +155,7 @@ func damage(damage):
 		$AnimationPlayer.queue("Flimmer")
 		_health -= damage
 		emit_signal("update_health", _health, 0)
+		emit_signal("set_trauma", 0.5)
 
 
 func _on_PlayerHitbox_body_entered(body):
