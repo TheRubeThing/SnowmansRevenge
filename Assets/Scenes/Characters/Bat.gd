@@ -34,6 +34,7 @@ func get_damage() -> float:
 func _on_HitBox_body_entered(body):
 	if body.is_in_group("PlayerProjectile"):
 		if $InvisiblityTimer.is_stopped():
+			body.spawn_snow()
 			$InvisiblityTimer.start()
 			$AnimationPlayer.play("Flash")
 			$AnimationPlayer.queue("Flutter")

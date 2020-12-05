@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Sprites/Attacks/Snowball.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Scenes/Attacks/Snowball.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scenes/Particles/SnowImpact.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
@@ -11,6 +12,7 @@ extents = Vector2( 4, 4 )
 ]]
 collision_layer = 4
 script = ExtResource( 2 )
+snow_particles = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
