@@ -26,6 +26,11 @@ signal set_max_health(max_health)
 func _ready():
 	emit_signal("set_max_health", max_health)
 	emit_signal("update_health", _health, 0)
+	
+func _input(event):
+	if event.is_action_pressed("Fire"):
+		if not Input.is_action_pressed("RollMod"):
+			$AnimatedSprite/FirePosition.fire()
 
 func _process(delta):
 	_calculate_jump_parameters()
