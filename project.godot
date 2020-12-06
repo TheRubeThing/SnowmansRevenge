@@ -21,8 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SnowmansRevenge"
-run/main_scene="res://TestLevel.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Assets/Scenes/Levels/Main.tscn"
 
 [display]
 

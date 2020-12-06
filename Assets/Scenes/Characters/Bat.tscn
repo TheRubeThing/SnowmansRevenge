@@ -6,16 +6,16 @@
 [ext_resource path="res://Assets/Scenes/Characters/Bat.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Shaders/FlashShader.shader" type="Shader" id=5]
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 5 )
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/flash_blend = 0.0
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 5 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
@@ -23,13 +23,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=4]
 radius = 120.0
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 8, 5 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "Flash"
 length = 0.3
 tracks/0/type = "value"
@@ -45,8 +45,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0, 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Flutter"
+[sub_resource type="Animation" id=7]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -62,8 +61,7 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Idle"
+[sub_resource type="Animation" id=8]
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:visible")
 tracks/0/interp = 1
@@ -78,19 +76,20 @@ tracks/0/keys = {
 }
 
 [node name="Bat" type="KinematicBody2D"]
-material = SubResource( 7 )
+material = SubResource( 1 )
 collision_layer = 2147483648
 script = ExtResource( 4 )
+move_speed = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 use_parent_material = true
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "Fly"
-frame = 1
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -100,7 +99,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
 position = Vector2( 0, -2.5 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -108,7 +107,7 @@ collision_mask = 2147483652
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( 0, -2.5 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="InvisiblityTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -116,9 +115,9 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/Flash = SubResource( 8 )
-anims/Flutter = SubResource( 5 )
-anims/Idle = SubResource( 6 )
+anims/Flash = SubResource( 6 )
+anims/Flutter = SubResource( 7 )
+anims/Idle = SubResource( 8 )
 [connection signal="body_entered" from="PlayerDetectArea" to="." method="_on_PlayerDetectArea_body_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
 [connection signal="timeout" from="InvisiblityTimer" to="." method="_on_InvisiblityTimer_timeout"]
