@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Shaders/FlashShader.shader" type="Shader" id=1]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/World Items/Present.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Scenes/GUI/BatCounter.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Scenes/Levels/Level.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Scenes/GUI/PresentCounter.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -123,6 +124,12 @@ margin_left = -350.243
 margin_top = -168.33
 margin_right = -350.243
 margin_bottom = -168.33
+
+[node name="PresentCounter" parent="Camera2D" instance=ExtResource( 14 )]
+margin_left = -152.0
+margin_top = -168.0
+margin_right = -152.0
+margin_bottom = -168.0
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 material = SubResource( 5 )
@@ -287,10 +294,10 @@ __meta__ = {
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-margin_left = -840.0
-margin_top = 2216.0
-margin_right = 2314.0
-margin_bottom = 5143.0
+margin_left = -848.0
+margin_top = 2144.0
+margin_right = 2306.0
+margin_bottom = 5071.0
 rect_rotation = -90.0
 texture = SubResource( 9 )
 expand = true
@@ -335,6 +342,6 @@ position = Vector2( 72, 8 )
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
-[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch2" to="Gate3" method="_on_Gate_Trigger"]

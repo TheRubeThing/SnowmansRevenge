@@ -89,7 +89,7 @@ shape = SubResource( 2 )
 use_parent_material = true
 frames = SubResource( 3 )
 animation = "Fly"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 

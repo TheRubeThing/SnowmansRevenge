@@ -14,4 +14,5 @@ func _physics_process(delta):
 
 func _on_Present_body_entered(body):
 	if body.is_in_group("Player"):
+		get_parent().increase_present_count(1)
 		queue_free()
