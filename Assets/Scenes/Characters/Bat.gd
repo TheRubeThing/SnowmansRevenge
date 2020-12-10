@@ -40,6 +40,7 @@ func _on_HitBox_body_entered(body):
 			$AnimationPlayer.queue("Flutter")
 			_health -= 10
 			if _health <= 0:
+				get_parent().increase_bat_count(1)
 				queue_free()
 
 

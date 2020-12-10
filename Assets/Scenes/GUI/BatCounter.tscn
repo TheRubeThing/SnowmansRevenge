@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/GUI/BatIcon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Scenes/GUI/BatCounter.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="BatCounter" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -656.0
+margin_bottom = -344.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 65.0
+margin_bottom = 17.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_right = 9.0
+margin_bottom = 17.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+margin_left = 13.0
+margin_right = 63.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 50, 0 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "10"

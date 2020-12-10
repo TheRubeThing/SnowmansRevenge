@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Shaders/FlashShader.shader" type="Shader" id=1]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Assets/Scenes/Gate.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/Scenes/Switch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/World Items/Present.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Scenes/GUI/BatCounter.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Scenes/Levels/Level.gd" type="Script" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -85,6 +88,7 @@ colors = PoolColorArray( 0.385757, 0.163782, 0.523438, 1, 0.0636892, 0.571119, 0
 gradient = SubResource( 8 )
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="ground" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -107,6 +111,12 @@ smoothing_speed = 1.0
 script = ExtResource( 2 )
 smoothing = 0.01
 target_offset = Vector2( 0, -50 )
+
+[node name="BatCounter" parent="Camera2D" instance=ExtResource( 12 )]
+margin_left = -208.0
+margin_top = -168.0
+margin_right = -208.0
+margin_bottom = -168.0
 
 [node name="HealthBar" parent="Camera2D" instance=ExtResource( 4 )]
 margin_left = -350.243
@@ -304,9 +314,27 @@ position = Vector2( 408, 216 )
 
 [node name="Switch2" parent="." instance=ExtResource( 10 )]
 position = Vector2( 832, 424 )
+
+[node name="Present" parent="." instance=ExtResource( 11 )]
+position = Vector2( 480, 208 )
+
+[node name="Present2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 624, 144 )
+
+[node name="Present3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 496, 16 )
+
+[node name="Present4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 648, -16 )
+
+[node name="Present5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 608, -224 )
+
+[node name="Present6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 72, 8 )
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
-[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch2" to="Gate3" method="_on_Gate_Trigger"]
