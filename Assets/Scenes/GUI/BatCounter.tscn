@@ -32,8 +32,9 @@ stretch_mode = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
 margin_left = 13.0
-margin_right = 63.0
+margin_right = 108.0
 margin_bottom = 17.0
-rect_min_size = Vector2( 50, 0 )
+rect_min_size = Vector2( 95, 0 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "10"
+text = "99/99"
+fit_content_height = true

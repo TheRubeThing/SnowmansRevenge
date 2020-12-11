@@ -23,6 +23,7 @@ onready var _drop_jump_timer : float = 0
 onready var _health = max_health
 
 var _dead : bool = false
+onready var _start_position = position
 
 signal update_health(health, amount)
 signal set_max_health(max_health)
@@ -198,4 +199,8 @@ func check_dead():
 
 
 func _on_DeathTime_timeout():
-	get_tree().reload_current_scene()
+	_health = max_health
+	position = _start_position
+	visible = true
+	_dead = false
+	$DeathTime.stop()

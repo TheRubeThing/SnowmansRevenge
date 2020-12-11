@@ -9,6 +9,8 @@ var _direction : Vector2 = Vector2.ZERO
 
 onready var _health = max_health
 
+signal dead()
+
 func _ready():
 	_start_position = position
 
@@ -40,7 +42,7 @@ func _on_HitBox_body_entered(body):
 			$AnimationPlayer.queue("Flutter")
 			_health -= 10
 			if _health <= 0:
-				get_parent().increase_bat_count(1)
+				emit_signal("dead")
 				queue_free()
 
 

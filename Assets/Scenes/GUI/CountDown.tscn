@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Scenes/GUI/CountDown.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Scenes/GUI/CountDownLabel.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="CountDown" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -528.0
+margin_bottom = -328.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountdownLabel" type="RichTextLabel" parent="."]
+margin_right = 136.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "99:99"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -21,7 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="SnowmansRevenge"
-run/main_scene="res://Assets/Scenes/Levels/Main.tscn"
+run/main_scene="res://Assets/Scenes/Levels/IntroScene.tscn"
+
+[autoload]
+
+SceneManager="*res://Assets/Scenes/Levels/SceneManager.tscn"
+GameData="*res://Assets/Scenes/Levels/GameData.gd"
 
 [display]
 

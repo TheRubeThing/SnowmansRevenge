@@ -7,6 +7,8 @@ var _phase = 0
 
 onready var start_position := position
 
+signal collected()
+
 func _physics_process(delta):
 	_phase += delta
 	position.y = start_position.y + floating_amp * sin(2 * PI * _phase * floating_freq)
@@ -14,5 +16,5 @@ func _physics_process(delta):
 
 func _on_Present_body_entered(body):
 	if body.is_in_group("Player"):
-		get_parent().increase_present_count(1)
+		emit_signal("collected")
 		queue_free()

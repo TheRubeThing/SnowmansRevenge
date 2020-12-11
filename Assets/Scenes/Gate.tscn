@@ -3,6 +3,8 @@
 [ext_resource path="res://Assets/Sprites/World Items/Gate.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Assets/Scenes/Gate.gd" type="Script" id=15]
 
+
+
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
 
