@@ -8,10 +8,13 @@ var _levels = {
 	3: "res://Assets/Scenes/Levels/LevelBig.tscn",
 	4: "res://Assets/Scenes/Levels/TestLevel.tscn"
 }
-
+	
 func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
+	
+func fade_in():
+	$FadeAnimations.play("BlackFadeIn")
 	
 func goto_main_menu():
 	goto_scene("res://Assets/Scenes/Levels/MainMenu.tscn")

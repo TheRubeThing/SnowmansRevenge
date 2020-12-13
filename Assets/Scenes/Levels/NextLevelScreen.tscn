@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/NextLevelButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Scenes/Levels/IntroScene.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Assets/Sound/Music/TitleScreen.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenuButton.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Scenes/Levels/Time result.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Sound/Effects/ButtonUp.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sound/Effects/ButtonDown.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
@@ -109,6 +112,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/NextLevelButton"]
+stream = ExtResource( 8 )
+
 [node name="Main Menu" type="Button" parent="Control/VBoxContainer"]
 margin_top = 104.0
 margin_right = 322.0
@@ -120,6 +126,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 next_level = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/Main Menu"]
+stream = ExtResource( 9 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500, 0 )
@@ -135,3 +144,6 @@ process_material = SubResource( 6 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="BGNoise" parent="." instance=ExtResource( 10 )]
+volume_db = -30.0

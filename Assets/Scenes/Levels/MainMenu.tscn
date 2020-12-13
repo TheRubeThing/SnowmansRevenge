@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Scenes/Levels/IntroScene.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Scenes/Levels/LevelBig.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/Sound/Music/TitleScreen.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sound/Music/MainMenu.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Scenes/Levels/Quit Game.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sound/Effects/Button.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sound/Effects/ButtonDown.wav" type="AudioStream" id=9]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
@@ -103,6 +106,9 @@ __meta__ = {
 }
 next_level = ExtResource( 3 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/Start"]
+stream = ExtResource( 8 )
+
 [node name="Quit Game" type="Button" parent="Control/VBoxContainer"]
 margin_top = 84.0
 margin_right = 322.0
@@ -113,6 +119,9 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/Quit Game"]
+stream = ExtResource( 9 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500, 0 )
@@ -126,5 +135,9 @@ amount = 25
 lifetime = 3.0
 process_material = SubResource( 6 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -4.0
+autoplay = true
+
+[node name="BGNoise" parent="." instance=ExtResource( 7 )]

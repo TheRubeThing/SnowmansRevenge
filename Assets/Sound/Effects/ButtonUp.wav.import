@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ButtonUp.wav-c7fe085fcab2ed2b56ce0256c038933c.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Effects/ButtonUp.wav"
+dest_files=[ "res://.import/ButtonUp.wav-c7fe085fcab2ed2b56ce0256c038933c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

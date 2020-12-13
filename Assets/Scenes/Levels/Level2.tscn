@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Scenes/GUI/CountDown.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Scenes/Characters/Player.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Assets/Scenes/Gate.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Scenes/Switch.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Sound/Music/Map.wav" type="AudioStream" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -198,6 +200,9 @@ position = Vector2( -928, -272 )
 [node name="Present4" parent="." instance=ExtResource( 11 )]
 position = Vector2( -688, -368 )
 
+[node name="Present5" parent="." instance=ExtResource( 11 )]
+position = Vector2( -400, -240 )
+
 [node name="BG" parent="." instance=ExtResource( 3 )]
 
 [node name="KillBox" type="Area2D" parent="."]
@@ -219,9 +224,15 @@ So dont grab all the snow at once!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BGNoise" parent="." instance=ExtResource( 18 )]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+autoplay = true
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
-[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
 [connection signal="body_entered" from="KillBox" to="KillBox" method="_on_KillBox_body_entered"]

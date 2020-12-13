@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/IntroScene.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sound/Music/TitleScreen.wav" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenuButton.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Scenes/GUI/PresentCounter.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/Scenes/GUI/BatCounter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Sound/Effects/ButtonDown.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sound/Effects/ButtonUp.wav" type="AudioStream" id=7]
 [ext_resource path="res://Assets/Scenes/Levels/PlayAgain.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
@@ -87,26 +87,10 @@ bbcode_text = "[center]Try again?[/center]"
 text = "Try again?"
 fit_content_height = true
 
-[node name="BatCounter2" parent="Control/VBoxContainer" instance=ExtResource( 7 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="PlayAgain" type="Button" parent="Control/VBoxContainer"]
 margin_top = 24.0
 margin_right = 322.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="BatCounter" parent="Control/VBoxContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 48.0
-margin_right = 322.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 0, 20 )
-
-[node name="PlayAgain" type="Button" parent="Control/VBoxContainer"]
-margin_top = 72.0
-margin_right = 322.0
-margin_bottom = 94.0
+margin_bottom = 46.0
 custom_fonts/font = SubResource( 4 )
 text = "Play"
 script = ExtResource( 8 )
@@ -114,10 +98,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/PlayAgain"]
+stream = ExtResource( 7 )
+
 [node name="Main Menu" type="Button" parent="Control/VBoxContainer"]
-margin_top = 98.0
+margin_top = 50.0
 margin_right = 322.0
-margin_bottom = 120.0
+margin_bottom = 72.0
 custom_fonts/font = SubResource( 4 )
 text = "Main Menu"
 script = ExtResource( 4 )
@@ -125,6 +112,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 next_level = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/VBoxContainer/Main Menu"]
+stream = ExtResource( 6 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500, 0 )
@@ -138,5 +128,5 @@ amount = 25
 lifetime = 3.0
 process_material = SubResource( 6 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+[node name="BGNoise" parent="." instance=ExtResource( 9 )]
+volume_db = -30.0
