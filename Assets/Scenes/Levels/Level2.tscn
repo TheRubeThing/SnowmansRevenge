@@ -18,7 +18,7 @@
 [ext_resource path="res://Assets/Scenes/Gate.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Scenes/Switch.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Assets/Sound/Music/Map.wav" type="AudioStream" id=19]
+[ext_resource path="res://Assets/Scenes/MapMusic.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -227,12 +227,10 @@ __meta__ = {
 
 [node name="BGNoise" parent="." instance=ExtResource( 18 )]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
-autoplay = true
+[node name="MapMusic" parent="." instance=ExtResource( 19 )]
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
-[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="body_entered" from="KillBox" to="KillBox" method="_on_KillBox_body_entered"]

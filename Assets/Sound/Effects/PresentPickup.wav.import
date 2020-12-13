@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PresentPickup.wav-4757e24323454423ba2d62559e0e31e9.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Effects/PresentPickup.wav"
+dest_files=[ "res://.import/PresentPickup.wav-4757e24323454423ba2d62559e0e31e9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

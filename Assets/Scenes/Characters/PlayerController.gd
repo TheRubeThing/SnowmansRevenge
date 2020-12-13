@@ -52,15 +52,23 @@ func _process(delta):
 		if _is_grounded():
 			if abs(_velocity.x) > ground_stop_threshold:
 				if Input.is_action_pressed("RollMod"):
+					if not $RollSound.playing:
+						$RollSound.play()
 					$AnimatedSprite.play("Roll")
 				else:
+					if not $WalkingSound.playing:
+						$WalkingSound.play()
 					$AnimatedSprite.play("Walk")
 			else:
+				$RollSound.stop()
 				if not Input.is_action_pressed("RollMod"):
+					$WalkingSound.stop()
 					$AnimatedSprite.stop()
 					$AnimatedSprite.play("Idle")
 		else:
 			# Freeze animation to set frames manually
+			$RollSound.stop()
+			$WalkingSound.stop()
 			$AnimatedSprite.play("Jump")
 			$AnimatedSprite.stop()
 			if abs(_velocity.y) > 0.8 * _jump_speed:
