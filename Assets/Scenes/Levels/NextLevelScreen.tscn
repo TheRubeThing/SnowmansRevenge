@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/NextLevelButton.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Scenes/Levels/IntroScene.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Sound/Music/TitleScreen.wav" type="AudioStream" id=5]
@@ -47,7 +46,6 @@ damping = 12.64
 scale = 2.0
 
 [node name="GameOverScreen" type="Node2D"]
-script = ExtResource( 2 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 720.0

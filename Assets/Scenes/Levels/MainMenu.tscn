@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/StartButton.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Scenes/Levels/IntroScene.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scenes/Levels/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Scenes/Levels/LevelBig.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Sound/Music/MainMenu.wav" type="AudioStream" id=5]

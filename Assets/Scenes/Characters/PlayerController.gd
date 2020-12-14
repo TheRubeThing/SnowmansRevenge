@@ -184,6 +184,10 @@ func damage(damage):
 			emit_signal("update_health", _health, 0)
 			emit_signal("set_trauma", 0.5)
 			check_dead()
+			
+func set_health(amount : int):
+	_health = amount
+	emit_signal("update_health", _health, 0)
 
 
 func _on_PlayerHitbox_body_entered(body):
