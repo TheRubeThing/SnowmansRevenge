@@ -36,6 +36,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("Fire"):
 		if not Input.is_action_pressed("RollMod"):
+			$ThrowSound.play()
 			$AnimatedSprite/FirePosition.fire()
 
 func _process(delta):
@@ -116,11 +117,15 @@ func _physics_process(delta):
 		# Apply gravity if not grounded
 		if _is_grounded():
 			# Ground shake when landning
-			if not _just_grounded && abs(_velocity.y) > 1.1 * _jump_speed:
-				emit_signal("set_trauma", min(_velocity.y / (6 * _jump_speed), 1.0))
+			if not _just_grounded:
+				if abs(_velocity.y) > 0.2 * _jump_speed:
+					$LandSound.play()
+				if abs(_velocity.y) > 1.1 * _jump_speed:
+					emit_signal("set_trauma", min(_velocity.y / (6 * _jump_speed), 1.0))
 				
 			_just_grounded = true
 			if	Input.is_action_just_pressed("Jump"):
+				$JumpSOund.play()
 				_velocity.y -= _jump_speed
 			else:
 				_velocity.y = 0
@@ -171,6 +176,7 @@ func _is_walled() -> bool:
 func damage(damage):
 	if not _dead:
 		if $InvisiblityTimer.is_stopped():
+			$DamageSound.play()
 			$InvisiblityTimer.start()
 			$AnimationPlayer.play("Flash")
 			$AnimationPlayer.queue("Flimmer")

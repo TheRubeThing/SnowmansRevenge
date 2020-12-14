@@ -8,4 +8,6 @@ func _process(delta):
 			if body.is_in_group("Player"):
 				play("ON")
 				emit_signal("triggered")
+				$"SwitchSound".play()
+				
 				

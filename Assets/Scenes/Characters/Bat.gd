@@ -13,6 +13,11 @@ signal dead()
 
 func _ready():
 	_start_position = position
+	$AnimatedSprite.stop()
+	randomize()
+	yield(get_tree().create_timer(rand_range(0,1.0)), "timeout")
+	$FlapSound.play()
+	$AnimatedSprite.play()
 
 func _physics_process(delta):
 	var direction = _get_direction()
@@ -36,6 +41,7 @@ func get_damage() -> float:
 func _on_HitBox_body_entered(body):
 	if body.is_in_group("PlayerProjectile"):
 		if $InvisiblityTimer.is_stopped():
+			$DamageSound.play()
 			body.spawn_snow()
 			$InvisiblityTimer.start()
 			$AnimationPlayer.play("Flash")

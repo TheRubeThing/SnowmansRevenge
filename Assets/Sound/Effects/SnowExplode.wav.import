@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/SnowExplode.wav-3dbd71207ba2429f3be0bec5b6eda1b5.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Effects/SnowExplode.wav"
+dest_files=[ "res://.import/SnowExplode.wav-3dbd71207ba2429f3be0bec5b6eda1b5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

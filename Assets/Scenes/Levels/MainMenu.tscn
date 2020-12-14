@@ -139,5 +139,6 @@ process_material = SubResource( 6 )
 stream = ExtResource( 5 )
 volume_db = -4.0
 autoplay = true
+bus = "Musik"
 
 [node name="BGNoise" parent="." instance=ExtResource( 7 )]
