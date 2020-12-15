@@ -8,26 +8,36 @@ var _levels = {
 	3: "res://Assets/Scenes/Levels/LevelBig.tscn",
 	4: "res://Assets/Scenes/Levels/TestLevel.tscn"
 }
+
+var _in_level = false
 	
 func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
 	
+func _input(event):
+	if event.is_action_pressed("Exit") && _in_level:
+		goto_game_over()
+	
 func fade_in():
 	$FadeAnimations.play("BlackFadeIn")
 	
 func goto_main_menu():
+	_in_level = false
 	goto_scene("res://Assets/Scenes/Levels/MainMenu.tscn")
 	
 func goto_next_level_screen():
+	_in_level = false
 	goto_scene("res://Assets/Scenes/Levels/NextLevelScreen.tscn")
 	
 func goto_game_over():
+	_in_level = false
 	goto_scene("res://Assets/Scenes/Levels/GameOverScreen.tscn")
 	
 func goto_level(level: int):
 	GameData.current_level = level
 	print("Accessing level: " + str(level) + " : " + _levels[level])
+	_in_level = true
 	goto_scene(_levels[level])
 	
 func goto_scene(path):

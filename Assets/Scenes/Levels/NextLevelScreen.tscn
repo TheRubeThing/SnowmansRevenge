@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/NextLevelButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Scenes/Levels/BestTime.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/prstart.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Sound/Music/TitleScreen.wav" type="AudioStream" id=5]
@@ -9,6 +10,7 @@
 [ext_resource path="res://Assets/Sound/Effects/ButtonUp.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Sound/Effects/ButtonDown.wav" type="AudioStream" id=9]
 [ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Scenes/Levels/NextLevelScreen.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
@@ -46,6 +48,7 @@ damping = 12.64
 scale = 2.0
 
 [node name="GameOverScreen" type="Node2D"]
+script = ExtResource( 11 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 720.0
@@ -70,9 +73,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -161.0
-margin_top = -63.0
+margin_top = -75.0
 margin_right = 161.0
-margin_bottom = 63.0
+margin_bottom = 75.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,10 +102,22 @@ text = "Results"
 fit_content_height = true
 script = ExtResource( 7 )
 
-[node name="NextLevelButton" type="Button" parent="Control/VBoxContainer"]
+[node name="Time result2" type="RichTextLabel" parent="Control/VBoxContainer"]
 margin_top = 78.0
 margin_right = 322.0
-margin_bottom = 100.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Results[/center]"
+text = "Results"
+fit_content_height = true
+script = ExtResource( 2 )
+
+[node name="NextLevelButton" type="Button" parent="Control/VBoxContainer"]
+margin_top = 102.0
+margin_right = 322.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 4 )
 text = "Next Level"
 script = ExtResource( 1 )
@@ -114,9 +129,9 @@ __meta__ = {
 stream = ExtResource( 8 )
 
 [node name="Main Menu" type="Button" parent="Control/VBoxContainer"]
-margin_top = 104.0
+margin_top = 128.0
 margin_right = 322.0
-margin_bottom = 126.0
+margin_bottom = 150.0
 custom_fonts/font = SubResource( 4 )
 text = "Main Menu"
 script = ExtResource( 6 )
