@@ -5,6 +5,7 @@ export(PackedScene) var target
 export(Vector2) var target_offset = Vector2.ZERO
 export(Vector2) var max_shake_offset = Vector2(100,75)
 export(float) var shake_decay := 0.8
+export(float) var factor_limit = 100
 
 onready var _noise = OpenSimplexNoise.new()
 
@@ -26,6 +27,7 @@ func _physics_process(delta):
 	var direction = get_node("../Player").position - position
 	direction += target_offset * (1.0 - abs(player_velocity.y) / 200.0)
 	var factor = direction.length() * smoothing
+	factor = min(factor, factor_limit)
 	position += direction * factor * delta
 	_old_player_pos = get_node("../Player").position
 	shake()
