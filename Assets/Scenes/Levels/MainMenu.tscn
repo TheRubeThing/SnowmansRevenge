@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Scenes/Levels/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Scenes/Levels/MainMenu.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Scenes/BGNoise.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Sound/Effects/Button.wav" type="AudioStream" id=8]
 [ext_resource path="res://Assets/Sound/Effects/ButtonDown.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Scenes/GUI/LevelSelect.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1 )
@@ -71,9 +72,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -161.0
-margin_top = -53.0
+margin_top = -75.0
 margin_right = 161.0
-margin_bottom = 53.0
+margin_bottom = 75.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,10 +95,18 @@ margin_right = 322.0
 margin_bottom = 54.0
 rect_min_size = Vector2( 0, 30 )
 
-[node name="Start" type="Button" parent="Control/VBoxContainer"]
+[node name="LevelSelect" parent="Control/VBoxContainer" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_top = 58.0
 margin_right = 322.0
-margin_bottom = 80.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="Start" type="Button" parent="Control/VBoxContainer"]
+margin_top = 102.0
+margin_right = 322.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 4 )
 text = "Play"
 script = ExtResource( 1 )
@@ -110,9 +119,9 @@ next_level = ExtResource( 3 )
 stream = ExtResource( 8 )
 
 [node name="Quit Game" type="Button" parent="Control/VBoxContainer"]
-margin_top = 84.0
+margin_top = 128.0
 margin_right = 322.0
-margin_bottom = 106.0
+margin_bottom = 150.0
 custom_fonts/font = SubResource( 4 )
 text = "Quit"
 script = ExtResource( 6 )
