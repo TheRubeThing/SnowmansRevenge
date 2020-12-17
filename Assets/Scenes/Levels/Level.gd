@@ -41,3 +41,7 @@ func _on_Bat_dead():
 func _on_Present_pickup():
 	increase_present_count(1)
 	
+
+
+func _on_Gate_Trigger():
+	pass # Replace with function body.

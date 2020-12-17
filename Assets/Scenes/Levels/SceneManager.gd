@@ -3,10 +3,13 @@ extends Node2D
 var _current_scene = null
 
 var _levels = {
+	0: "res://Assets/Scenes/Levels/StoryIntro.tscn",
 	1: "res://Assets/Scenes/Levels/Level1.tscn",
 	2: "res://Assets/Scenes/Levels/Level2.tscn",
-	3: "res://Assets/Scenes/Levels/LevelBig.tscn",
-	4: "res://Assets/Scenes/Levels/TestLevel.tscn"
+	3: "res://Assets/Scenes/Levels/Level3.tscn",
+	4: "res://Assets/Scenes/Levels/Level4.tscn",
+	5: "res://Assets/Scenes/Levels/Level5.tscn",
+	6: "res://Assets/Scenes/Levels/Credits.tscn"
 }
 
 var _in_level = false

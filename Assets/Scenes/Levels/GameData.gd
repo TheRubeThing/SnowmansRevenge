@@ -1,7 +1,7 @@
 extends Node
 
 
-var current_level = 1
+var current_level = 0
 var completion_time = 0
 var persistent_data = {}
 

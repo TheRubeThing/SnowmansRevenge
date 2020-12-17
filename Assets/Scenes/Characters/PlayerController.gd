@@ -13,6 +13,7 @@ export(float) var drop_jump_time : float = 0.1
 export(float) var max_health : float = 100.0
 export(float) var snow_ball_cost : float = 2
 export(float) var melt_amount : float = 0.25
+export(float) var snow_absorb_amount : float = 0.4
 export(PackedScene) var respawn_scene
 
 onready var _velocity := Vector2.ZERO
@@ -152,7 +153,7 @@ func detect_snow():
 		var cell = body.world_to_map(position)
 		cell.y += 1
 		body.set_cell(cell.x, cell.y, -1)
-		_health += 0.25
+		_health += 0.4
 		_health = clamp(_health, 0, max_health)
 		emit_signal("update_health", _health, 0)
 		print("Snow!")

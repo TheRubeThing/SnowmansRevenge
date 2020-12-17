@@ -55,8 +55,8 @@ margin_bottom = 43.0
 alignment = 1
 
 [node name="MinusButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 66.0
-margin_right = 94.0
+margin_left = 16.0
+margin_right = 44.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 2 )
 text = "-"
@@ -66,10 +66,10 @@ script = ExtResource( 3 )
 stream = ExtResource( 5 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
-margin_left = 98.0
-margin_right = 138.0
+margin_left = 48.0
+margin_right = 188.0
 margin_bottom = 22.0
-rect_min_size = Vector2( 40, 0 )
+rect_min_size = Vector2( 140, 0 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]0[/center]"
@@ -78,8 +78,8 @@ fit_content_height = true
 script = ExtResource( 2 )
 
 [node name="PlusButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 142.0
-margin_right = 170.0
+margin_left = 192.0
+margin_right = 220.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 4 )
 text = "+"

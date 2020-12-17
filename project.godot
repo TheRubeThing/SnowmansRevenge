@@ -22,6 +22,7 @@ _global_script_class_icons={
 
 config/name="SnowmansRevenge"
 run/main_scene="res://Assets/Scenes/Levels/IntroScene.tscn"
+boot_splash/image="res://Skärmavbild 2020-12-16 kl. 23.50.04.png"
 config/icon="res://Assets/Sprites/Player/Snowman.png"
 
 [autoload]
