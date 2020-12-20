@@ -23,8 +23,11 @@ func _physics_process(delta):
 		if _ground_tiles.get_cell(cell.x, cell.y + 1) != -1:
 			_snow_tiles.set_cell(cell.x, cell.y + 1, 0)
 		else:
-			_snow_tiles.set_cell(cell.x - 1 * sign(_velocity.x), cell.y + 1, 0)
-			
+			if (int(position.x) % 16) > 8:
+				_snow_tiles.set_cell(cell.x + 1, cell.y + 1, 0)
+			else:
+				_snow_tiles.set_cell(cell.x - 1, cell.y + 1, 0)
+				
 		spawn_snow()
 		queue_free()
 	
