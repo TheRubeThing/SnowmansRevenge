@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ParallaxLayer",
+"class": "ScaledParallaxLayer",
+"language": "GDScript",
+"path": "res://Assets/Scenes/ScaledParallaxLayer.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Snowball",
 "language": "GDScript",
 "path": "res://Assets/Scenes/Attacks/Snowball.gd"
 } ]
 _global_script_class_icons={
+"ScaledParallaxLayer": "",
 "Snowball": ""
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Assets/Sprites/World Items/Present.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Scenes/GUI/PresentCounter.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/Scenes/Env/SmallSnow.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Assets/Scenes/Env/BigSnow.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Assets/Scenes/Levels/StartDamage.gd" type="Script" id=22]
+[ext_resource path="res://Assets/Scenes/Env/Cave.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -294,8 +295,10 @@ script = ExtResource( 22 )
 [node name="Bat3" parent="." instance=ExtResource( 10 )]
 material = SubResource( 9 )
 position = Vector2( -200, -496 )
-[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
+
+[node name="Cave" parent="." instance=ExtResource( 23 )]
 [connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
