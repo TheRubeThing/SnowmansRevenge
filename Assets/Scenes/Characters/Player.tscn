@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/Sprites/Player/WalkAnim/SnowmanWalk4.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Scenes/Characters/PlayerController.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/Sound/Effects/Land.wav" type="AudioStream" id=24]
 [ext_resource path="res://Assets/Sound/Effects/Throw.wav" type="AudioStream" id=25]
 [ext_resource path="res://Assets/Sound/Effects/SnowDamage.wav" type="AudioStream" id=26]
+[ext_resource path="res://Assets/Scenes/Particles/SnowPickup.tscn" type="PackedScene" id=27]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -118,6 +119,7 @@ extents = Vector2( 0.25, 2 )
 material = SubResource( 1 )
 collision_layer = 2
 script = ExtResource( 2 )
+snow_pickup_particles = ExtResource( 27 )
 
 [node name="MovementCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
@@ -127,7 +129,7 @@ shape = SubResource( 2 )
 use_parent_material = true
 frames = SubResource( 3 )
 animation = "Idle"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 

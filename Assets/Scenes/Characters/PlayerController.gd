@@ -14,7 +14,7 @@ export(float) var max_health : float = 100.0
 export(float) var snow_ball_cost : float = 2
 export(float) var melt_amount : float = 0.25
 export(float) var snow_absorb_amount : float = 0.4
-export(PackedScene) var respawn_scene
+export(PackedScene) var snow_pickup_particles
 
 onready var _velocity := Vector2.ZERO
 onready var _gravity : float = 0
@@ -155,6 +155,9 @@ func detect_snow():
 		body.set_cell(cell.x, cell.y, -1)
 		_health += 0.4
 		_health = clamp(_health, 0, max_health)
+		var particle = snow_pickup_particles.instance()
+		particle.global_position = $SnowDetector/CollisionShape2D.global_position
+		get_parent().add_child(particle)
 		emit_signal("update_health", _health, 0)
 		print("Snow!")
 	

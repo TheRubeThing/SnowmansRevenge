@@ -280,8 +280,8 @@ tile_data = PoolIntArray( -1769521, 0, 0, -1769520, 0, 0, -1703991, 0, 0, -17039
 [connection signal="set_max_health" from="Player" to="Camera2D/HealthBar" method="_on_set_max_health"]
 [connection signal="set_trauma" from="Player" to="Camera2D" method="_on_Player_set_trauma"]
 [connection signal="update_health" from="Player" to="Camera2D/HealthBar" method="_on_update_health"]
-[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="triggered" from="Switch" to="Gate2" method="_on_Gate_Trigger"]
+[connection signal="triggered" from="Switch" to="Gate" method="_on_Gate_Trigger"]
 [connection signal="body_entered" from="KillBox" to="KillBox" method="_on_KillBox_body_entered"]
 
 [editable path="Cave"]
