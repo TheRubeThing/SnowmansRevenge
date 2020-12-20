@@ -110,7 +110,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 2.24083, 2 )
+extents = Vector2( 0.25, 2 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
